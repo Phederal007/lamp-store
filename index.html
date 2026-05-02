@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Never Sit In Darkness | Happy Essential Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #D4AF37; /* Premium Gold */
+      --primary-dark: #B8860B;
+      --accent: #2ECC71; /* Success Green */
+      --dark: #0F0F0F;
+      --dark-grey: #1A1A1A;
+      --light-grey: #F5F5F7;
+      --white: #FFFFFF;
+      --text-muted: #A1A1A6;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: var(--dark);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: 'Inter', sans-serif; font-weight: 800; line-height: 1.2; }
+    
+    .container { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 20px; }
+
+    /* --- Animations --- */
+    .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* --- Top Banner --- */
+    .promo-bar {
+      background: var(--primary);
+      color: var(--dark);
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      padding: 60px 0 40px;
+      text-align: center;
+      background: radial-gradient(circle at top, #1a1a1a 0%, #0f0f0f 100%);
+    }
+
+    .brand-tag {
+      font-size: 14px;
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      background: linear-gradient(to bottom, #fff 0%, #a1a1a1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+
+    .main-image-container {
+      position: relative;
+      margin: 20px auto;
+      max-width: 90%;
+    }
+
+    .main-image-container img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* --- Social Proof Bar --- */
+    .proof-bar {
+      background: rgba(255,255,255,0.03);
+      padding: 15px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .stars { color: var(--primary); margin-bottom: 5px; font-size: 18px; }
+
+    /* --- Benefits Section --- */
+    .section-title {
+      text-align: center;
+      margin: 60px 0 40px;
+    }
+
+    .section-title h2 { font-size: 32px; color: var(--white); }
+    .section-title span { color: var(--primary); }
+
+    .benefit-grid {
+      display: grid;
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .benefit-card {
+      background: var(--dark-grey);
+      padding: 30px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: var(--transition);
+    }
+
+    .benefit-card:hover { border-color: var(--primary); transform: scale(1.02); }
+
+    .icon-box {
+      width: 50px;
+      height: 50px;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .benefit-card h3 { margin-bottom: 10px; font-size: 20px; }
+    .benefit-card p { color: var(--text-muted); font-size: 15px; }
+
+    /* --- Packages --- */
+    .package-card {
+      background: var(--white);
+      color: var(--dark);
+      border-radius: 24px;
+      padding: 25px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .package-card.active {
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+    }
+
+    .package-info b { font-size: 22px; display: block; }
+    .package-info span { font-size: 14px; color: #666; }
+    
+    .package-price { text-align: right; }
+    .package-price .amount { font-size: 24px; font-weight: 800; color: var(--dark); }
+    .package-price .save { font-size: 12px; color: var(--accent); font-weight: 700; display: block; }
+
+    .best-value-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* --- CTA Buttons --- */
+    .cta-button {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--dark);
+      width: 100%;
+      padding: 22px;
+      border-radius: 16px;
+      border: none;
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+      text-decoration: none;
+    }
+
+    .cta-button:active { transform: scale(0.98); }
+
+    .pulse {
+      animation: pulse-animation 2s infinite;
+    }
+
+    @keyframes pulse-animation {
+      0% { box-shadow: 0 0 0 0px rgba(212, 175, 55, 0.4); }
+      100% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); }
+    }
+
+    /* --- Sticky Footer --- */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 15, 15, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+      z-index: 1000;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      gap: 10px;
+    }
+
+    /* --- Testimonials --- */
+    .testimonial {
+      background: var(--dark-grey);
+      padding: 25px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .testimonial-user { display: flex; align-items: center; gap: 12px; margin-top: 15px; }
+    .user-avatar { width: 40px; height: 40px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+
+    /* --- FAQ --- */
+    .faq-item { margin-bottom: 15px; }
+    details { background: var(--dark-grey); border-radius: 12px; padding: 15px; }
+    summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::after { content: '+'; color: var(--primary); font-size: 20px; }
+    details[open] summary::after { content: '-'; }
+    details p { padding-top: 10px; color: var(--text-muted); font-size: 14px; }
+
+    /* --- Urgency --- */
+    .urgency-badge {
+      background: rgba(211, 47, 47, 0.1);
+      color: #ff5252;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    /* --- Form --- */
+    .order-form-container {
+      background: var(--dark-grey);
+      padding: 30px;
+      border-radius: 28px;
+      margin: 40px 0;
+    }
+    .input-field {
+      width: 100%;
+      background: #252525;
+      border: 1px solid #333;
+      padding: 16px;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    .input-field:focus { outline: none; border-color: var(--primary); }
+
+  </style>
+</head>
+<body>
+
+  <div class="promo-bar">🔥 FLASH SALE: PAY ON DELIVERY + FREE NATIONWIDE SHIPPING</div>
+
+  <section class="hero reveal active">
+    <div class="container">
+      <span class="brand-tag">HAPPY ESSENTIAL STORE</span>
+      <div class="urgency-badge">⚠️ Low Stock: Only 12 Units Left</div>
+      <h1>Say Goodbye To NEPA Darkness Forever.</h1>
+      <p>Luxury rechargeable lighting designed for comfort, style, and 24/7 reliability during power outages.</p>
+      
+      <div class="main-image-container">
+        <img src="https://i.ibb.co/yb5zFG5" alt="Premium Lamp">
+      </div>
+      
+      <a href="#order" class="cta-button pulse">
+        <span>Order Now via WhatsApp</span>
+      </a>
+      
+      <div style="display: flex; justify-content: center; gap: 15px; font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">
+        <span>✓ Pay On Delivery</span>
+        <span>✓ 24h Shipping</span>
+        <span>✓ Quality Inspected</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="proof-bar">
+    <div class="container">
+      <div class="stars">★★★★★</div>
+      <span>Trusted by <strong>2,400+</strong> Happy Nigerians this month</span>
+    </div>
+  </div>
+
+  <section class="container">
+    <div class="section-title reveal">
+      <h2>Why This Lamp is an <span>Essential Upgrade</span></h2>
+    </div>
+
+    <div class="benefit-grid">
+      <div class="benefit-card reveal">
+        <div class="icon-box">💡</div>
+        <h3>NEPA-Proof Lighting</h3>
+        <p>Don't let power outages ruin your night. Get up to 12 hours of continuous brightness on a single charge.</p>
+      </div>
+      
+      <div class="benefit-card reveal">
+        <div class="icon-box">⚡</div>
+        <h3>USB Fast Charge</h3>
+        <p>Charges fully in 2 hours using any standard phone charger or power bank. Simple and efficient.</p>
+      </div>
+
+      <div class="benefit-card reveal">
+        <div class="icon-box">✨</div>
+        <h3>Luxury Aesthetic</h3>
+        <p>Upgrade your bedroom or living room decor instantly. Minimalist design that screams "Premium".</p>
+      </div>
+
+      <div class="benefit-card reveal">
+        <div class="icon-box">👁️</div>
+        <h3>Eye-Comfort Tech</h3>
+        <p>Soft, warm lighting that reduces eye strain. Perfect for late-night reading or as a soothing night light.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="order">
+    <div class="section-title reveal">
+      <h2>Select Your <span>Special Bundle</span></h2>
+      <p style="color: var(--text-muted);">Massive savings when you buy for friends and family</p>
+    </div>
+
+    <div class="packages reveal">
+      <div class="package-card" onclick="selectPackage(this, '4 pcs - ₦35,000')">
+        <div class="package-info">
+          <b>4 Pieces Set</b>
+          <span>Perfect for bedrooms</span>
+        </div>
+        <div class="package-price">
+          <span class="amount">₦35,000</span>
+        </div>
+      </div>
+
+      <div class="package-card active" onclick="selectPackage(this, '7 pcs - ₦60,000')">
+        <div class="best-value-badge">MOST POPULAR</div>
+        <div class="package-info">
+          <b>7 Pieces Set</b>
+          <span>Standard home set</span>
+        </div>
+        <div class="package-price">
+          <span class="amount">₦60,000</span>
+          <span class="save">SAVE ₦1,500</span>
+        </div>
+      </div>
+
+      <div class="package-card" onclick="selectPackage(this, '10 pcs - ₦85,000')">
+        <div class="package-info">
+          <b>10 Pieces Set</b>
+          <span>Great for large families</span>
+        </div>
+        <div class="package-price">
+          <span class="amount">₦85,000</span>
+          <span class="save">SAVE ₦2,500</span>
+        </div>
+      </div>
+
+      <div class="package-card" onclick="selectPackage(this, '14 pcs - ₦120,000')">
+        <div class="best-value-badge" style="background: gold; color: black;">BEST VALUE</div>
+        <div class="package-info">
+          <b>14 Pieces Set</b>
+          <span>Wholesale price</span>
+        </div>
+        <div class="package-price">
+          <span class="amount">₦120,000</span>
+          <span class="save">SAVE ₦5,000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-form-container reveal">
+      <h3 style="text-align: center; margin-bottom: 20px;">Shipping Details</h3>
+      <form id="purchaseForm">
+        <input type="text" id="name" class="input-field" placeholder="Your Full Name" required>
+        <input type="tel" id="phone" class="input-field" placeholder="Active WhatsApp Number" required>
+        <input type="text" id="address" class="input-field" placeholder="Full Delivery Address" required>
+        <input type="text" id="state" class="input-field" placeholder="Your State" required>
+        <button type="submit" class="cta-button">🛒 Complete WhatsApp Order</button>
+      </form>
+      <p style="text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 15px;">
+        🔒 You will pay when you receive the product. Zero risk.
+      </p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-title reveal">
+      <h2>Reviews From <span>Real Customers</span></h2>
+    </div>
+
+    <div class="testimonial reveal">
+      <div class="stars">★★★★★</div>
+      <p>"The battery life is the most impressive part. It lasted the whole night when light went out. Every Nigerian home needs this."</p>
+      <div class="testimonial-user">
+        <div class="user-avatar">FO</div>
+        <b>Femi O. — Lagos</b>
+      </div>
+    </div>
+
+    <div class="testimonial reveal">
+      <div class="stars">★★★★★</div>
+      <p>"I bought the 7 pieces for my family. The build quality is solid and it looks very expensive. Delivery was fast too."</p>
+      <div class="testimonial-user">
+        <div class="user-avatar">AJ</div>
+        <b>Amaka J. — Abuja</b>
+      </div>
+    </div>
+
+    <div class="testimonial reveal">
+      <div class="stars">★★★★★</div>
+      <p>"Finally a rechargeable lamp that actually looks good on a bedside table. Happy Essential Store did well with this one."</p>
+      <div class="testimonial-user">
+        <div class="user-avatar">ST</div>
+        <b>Suleiman T. — Port Harcourt</b>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" style="padding-bottom: 60px;">
+    <div class="section-title reveal">
+      <h2>Common <span>Questions</span></h2>
+    </div>
+    
+    <div class="faq-item reveal">
+      <details>
+        <summary>Does it come with a charger?</summary>
+        <p>Yes, it comes with a high-speed USB charging cable compatible with all phone adapters and power banks.</p>
+      </details>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>How long does delivery take?</summary>
+        <p>Orders within Lagos take 24-48 hours. Other states take 3-5 business days.</p>
+      </details>
+    </div>
+
+    <div class="faq-item reveal">
+      <details>
+        <summary>Can I pay on delivery?</summary>
+        <p>Absolutely! You only pay once you have the product in your hands and are satisfied with it.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer style="background: #000; padding: 40px 0; text-align: center; border-top: 1px solid #1a1a1a;">
+    <div class="container">
+      <p style="color: var(--primary); font-weight: 800; margin-bottom: 10px;">HAPPY ESSENTIAL STORE</p>
+      <p style="color: var(--text-muted); font-size: 12px;">© 2026 Happy Essential Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="sticky-cta">
+    <a href="#order" class="cta-button" style="margin: 0; font-size: 14px;">Order Now - Pay On Delivery</a>
+  </div>
+
+  <script>
+    let selectedPackageText = "7 pcs - ₦60,000";
+
+    function selectPackage(element, text) {
+      document.querySelectorAll('.package-card').forEach(card => card.classList.remove('active'));
+      element.classList.add('active');
+      selectedPackageText = text;
+    }
+
+    // Scroll Reveal Logic
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 100;
+        if (elementTop < windowHeight - elementVisible) {
+          el.classList.add('active');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+
+    // Form Handling
+    document.getElementById("purchaseForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const address = document.getElementById("address").value;
+      const state = document.getElementById("state").value;
+
+      const message = encodeURIComponent(
+`💡 NEW PREMIUM LAMP ORDER 💡
+--------------------------
+Store: Happy Essential Store
+Status: Ready to Receive
+--------------------------
+Name: ${name}
+Phone: ${phone}
+Address: ${address}
+State: ${state}
+Package: ${selectedPackageText}
+--------------------------
+I am ready to pay on delivery. Please confirm.`
+      );
+
+      const whatsappNumber = "2347070194600";
+      window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+    });
+  </script>
+</body>
+</html>
